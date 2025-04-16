@@ -25,15 +25,15 @@
     .row {
       display: flex;
       justify-content: center;
-      margin-bottom: 10px;
       flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
     .icon {
       width: 64px;
       height: 64px;
       background-size: cover;
-      margin: 5px;
+      margin: 8px;
       border: 2px solid #a58b5f;
       border-radius: 8px;
       box-shadow: 0 0 10px #000;
@@ -47,11 +47,11 @@
     }
 
     .container {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       padding: 20px;
       border-radius: 20px;
       border: 2px solid #a58b5f;
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
     }
   </style>
@@ -59,89 +59,58 @@
 <body>
   <div class="container">
     <h1>Árvore de Habilidades</h1>
-    <div class="row" id="skillsRow"></div>
+    <div class="row" id="skillsRow">
+      <div class="icon" style="background-image: url('PNG/1.png');"></div>
+      <div class="icon" style="background-image: url('PNG/2.png');"></div>
+      <div class="icon" style="background-image: url('PNG/3.png');"></div>
+      <div class="icon" style="background-image: url('PNG/4.png');"></div>
+      <div class="icon" style="background-image: url('PNG/5.png');"></div>
+      <div class="icon" style="background-image: url('PNG/6.png');"></div>
+      <div class="icon" style="background-image: url('PNG/7.png');"></div>
+      <div class="icon" style="background-image: url('PNG/8.png');"></div>
+      <div class="icon" style="background-image: url('PNG/9.png');"></div>
+      <div class="icon" style="background-image: url('PNG/10.png');"></div>
+      <div class="icon" style="background-image: url('PNG/11.png');"></div>
+      <div class="icon" style="background-image: url('PNG/12.png');"></div>
+      <div class="icon" style="background-image: url('PNG/13.png');"></div>
+      <div class="icon" style="background-image: url('PNG/14.png');"></div>
+      <div class="icon" style="background-image: url('PNG/15.png');"></div>
+      <div class="icon" style="background-image: url('PNG/16.png');"></div>
+      <div class="icon" style="background-image: url('PNG/17.png');"></div>
+      <div class="icon" style="background-image: url('PNG/18.png');"></div>
+      <div class="icon" style="background-image: url('PNG/19.png');"></div>
+      <div class="icon" style="background-image: url('PNG/20.png');"></div>
+      <div class="icon" style="background-image: url('PNG/21.png');"></div>
+      <div class="icon" style="background-image: url('PNG/22.png');"></div>
+      <div class="icon" style="background-image: url('PNG/23.png');"></div>
+      <div class="icon" style="background-image: url('PNG/24.png');"></div>
+      <div class="icon" style="background-image: url('PNG/25.png');"></div>
+      <div class="icon" style="background-image: url('PNG/26.png');"></div>
+      <div class="icon" style="background-image: url('PNG/27.png');"></div>
+      <div class="icon" style="background-image: url('PNG/28.png');"></div>
+      <div class="icon" style="background-image: url('PNG/29.png');"></div>
+      <div class="icon" style="background-image: url('PNG/30.png');"></div>
+      <div class="icon" style="background-image: url('PNG/31.png');"></div>
+      <div class="icon" style="background-image: url('PNG/32.png');"></div>
+      <div class="icon" style="background-image: url('PNG/33.png');"></div>
+      <div class="icon" style="background-image: url('PNG/34.png');"></div>
+      <div class="icon" style="background-image: url('PNG/35.png');"></div>
+      <div class="icon" style="background-image: url('PNG/36.png');"></div>
+      <div class="icon" style="background-image: url('PNG/37.png');"></div>
+      <div class="icon" style="background-image: url('PNG/38.png');"></div>
+      <div class="icon" style="background-image: url('PNG/39.png');"></div>
+      <div class="icon" style="background-image: url('PNG/40.png');"></div>
+      <div class="icon" style="background-image: url('PNG/41.png');"></div>
+      <div class="icon" style="background-image: url('PNG/42.png');"></div>
+      <div class="icon" style="background-image: url('PNG/43.png');"></div>
+      <div class="icon" style="background-image: url('PNG/44.png');"></div>
+      <div class="icon" style="background-image: url('PNG/45.png');"></div>
+      <div class="icon" style="background-image: url('PNG/46.png');"></div>
+      <div class="icon" style="background-image: url('PNG/47.png');"></div>
+      <div class="icon" style="background-image: url('PNG/48.png');"></div>
+      <div class="icon" style="background-image: url('PNG/49.png');"></div>
+      <div class="icon" style="background-image: url('PNG/50.png');"></div>
+    </div>
   </div>
-
-  <script>
-    const imagens = [
-      "1.png", "10.png", "11.png", "12.png", "13.png", "14.png", "15.png", "16.png", "17.png", "18.png", "19.png",
-      "2.png", "20.png", "21.png", "22.png", "23.png", "24.png", "25.png", "26.png", "27.png", "28.png", "29.png",
-      "3.png", "30.png", "31.png", "32.png", "33.png", "34.png", "35.png", "36.png", "37.png", "38.png", "39.png",
-      "4.png", "40.png", "41.png", "42.png", "43.png", "44.png", "45.png", "46.png", "47.png", "48.png", "49.png",
-      "5.png", "50.png", "6.png", "7.png", "8.png", "9.png"
-    ];
-
-    const descricoes = [
-      "Disparo de energia arcana que perfura defesas mágicas.",
-      "Explosão infernal com dano em área crescente.",
-      "Lâmina espectral que persegue o inimigo.",
-      "Barreira espiritual que bloqueia magias por 2 turnos.",
-      "Chamas sagradas que purificam aliados e queimam inimigos.",
-      "Lâmina flamejante de execução, ignora defesa.",
-      "Estaca de cristal que surge do chão.",
-      "Tempestade negra que drena a vitalidade inimiga.",
-      "Rajada de vento cortante que afasta inimigos.",
-      "Espada divina invocada por um breve instante.",
-      "Aura gélida que reduz a velocidade dos inimigos.",
-      "Golpe sombrio que absorve parte do dano causado.",
-      "Luz purificadora que dissipa efeitos negativos.",
-      "Lanças espirituais lançadas em sequência.",
-      "Marca maldita que aumenta o dano sofrido pelo inimigo.",
-      "Disparo explosivo de luz ancestral.",
-      "Grito de guerra que aumenta o ataque por 3 turnos.",
-      "Raio concentrado que salta entre inimigos.",
-      "Sombra ilusória que desvia o próximo golpe.",
-      "Esfera arcana que explode após 2 segundos.",
-      "Chuva de flechas mágicas.",
-      "Gosma corrosiva que reduz defesa física.",
-      "Lâmina de trovão que paralisa temporariamente.",
-      "Barreira prismática que reflete ataques mágicos.",
-      "Punho flamejante que causa dano crítico.",
-      "Névoa venenosa que afeta área ampla.",
-      "Corrente etérea que prende inimigos.",
-      "Luz purificadora que revive um aliado com 30% de vida.",
-      "Meteoro etéreo com dano massivo.",
-      "Chamado da floresta que cura lentamente aliados.",
-      "Toque espectral que causa medo.",
-      "Rugido flamejante em cone frontal.",
-      "Aura da morte que enfraquece inimigos próximos.",
-      "Lança gélida com chance de congelar.",
-      "Explosão solar com grande alcance.",
-      "Golpe sombrio que ignora armadura.",
-      "Grito inspirador que fortalece aliados.",
-      "Lâmina de cristal com chance de crítico.",
-      "Esfera de trevas que silencia inimigos.",
-      "Chicote de fogo com alcance médio.",
-      "Proteção arcana que reduz dano por 3 turnos.",
-      "Espada de luz que cura ao atacar.",
-      "Luz divina que remove efeitos negativos em área.",
-      "Disparo gélido que desacelera.",
-      "Espinhos sombrios que ferem ao se mover.",
-      "Aura protetora que reduz todo dano recebido.",
-      "Golpe de trovão com área circular.",
-      "Invocação de espectro aliado.",
-      "Bênção suprema que restaura vida completamente."
-    ];
-
-    const habilidades = {};
-
-    imagens.forEach((img, i) => {
-      habilidades[img] = {
-        nivel: i === 0 ? 1 : 14 + i,
-        descricao: descricoes[i] || "Habilidade desconhecida."
-      };
-
-      const icon = document.createElement("div");
-      icon.className = "icon";
-      icon.style.backgroundImage = `url(PNG/${img})`;
-
-      icon.addEventListener("click", () => {
-        const skill = habilidades[img];
-        alert(`Nível necessário: ${skill.nivel}\nDescrição: ${skill.descricao}`);
-      });
-
-      document.getElementById("skillsRow").appendChild(icon);
-    });
-  </script>
 </body>
 </html>
