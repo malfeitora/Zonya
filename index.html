@@ -74,9 +74,10 @@
 
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
-    const radius = 300;
-    const branchLength = 4; // Nível de profundidade de cada árvore
-    const angleStep = (2 * Math.PI) / icons.length;
+    const radius = 350;
+    const branchLength = 5;
+    const trees = Math.ceil(icons.length / 20);
+    const angleStep = (2 * Math.PI) / trees;
 
     const createLine = (x1, y1, x2, y2) => {
       const dx = x2 - x1;
@@ -92,8 +93,8 @@
       return line;
     };
 
-    const createBranch = (x, y, depth, angle, iconIndex) => {
-      if (depth === 0 || iconIndex >= icons.length) return;
+    const createBranch = (x, y, depth, angle, iconIndex, iconsPerTree) => {
+      if (depth === 0 || iconIndex >= icons.length || iconIndex % iconsPerTree === 0 && iconIndex !== 0) return;
 
       const nextX = x + Math.cos(angle) * 90;
       const nextY = y + Math.sin(angle) * 90;
@@ -108,18 +109,18 @@
       const line = createLine(x, y, nextX, nextY);
       container.appendChild(line);
 
-      createBranch(nextX, nextY, depth - 1, angle - 0.4, iconIndex + 1);
-      createBranch(nextX, nextY, depth - 1, angle + 0.4, iconIndex + 2);
+      createBranch(nextX, nextY, depth - 1, angle - 0.4, iconIndex + 1, iconsPerTree);
+      createBranch(nextX, nextY, depth - 1, angle + 0.4, iconIndex + 2, iconsPerTree);
     };
 
-    for (let i = 0; i < icons.length; i += branchLength * 2) {
-      const angle = i * angleStep;
+    for (let t = 0; t < trees; t++) {
+      const angle = t * angleStep;
       const baseX = centerX + Math.cos(angle) * radius;
       const baseY = centerY + Math.sin(angle) * radius;
       const line = createLine(centerX, centerY, baseX, baseY);
       container.appendChild(line);
 
-      createBranch(baseX, baseY, branchLength, angle, i);
+      createBranch(baseX, baseY, branchLength, angle, t * 20, 20);
     }
   </script></body>
 </html>
