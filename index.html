@@ -1,150 +1,98 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <title>Árvore de Habilidades Circular</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: 'Garamond', serif;
-      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWkbAM130_7CvsqZdfB8h7bsP89mtkCweHAW7q4MlQoM8BEUlp6J0jjCs&s=10');
-      background-size: cover;
-      background-attachment: fixed;
-      color: #f8f8f2;
-      text-shadow: 1px 1px 2px #000;
-    }
+<!DOCTYPE html><html lang="pt-BR">  <head>    <meta charset="UTF-8">  
+  <title>Árvore de Habilidades</title>  
+  <style>  
+    body {  
+      margin: 0;  
+      padding: 20px;  
+      font-family: 'Garamond', serif;  
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWkbAM130_7CvsqZdfB8h7bsP89mtkCweHAW7q4MlQoM8BEUlp6J0jjCs&s=10');  
+      background-size: cover;  
+      background-attachment: fixed;  
+      color: #f8f8f2;  
+      text-shadow: 1px 1px 2px #000;  
+    }h1 {  
+  text-align: center;  
+  margin-bottom: 30px;  
+  font-size: 36px;  
+  color: #e0d6b6;  
+}  .row {
+display: flex;
+justify-content: center;
+margin-bottom: 10px;
+}.icon { width: 64px; height: 64px; background-size: cover; margin: 5px; border: 2px solid #a58b5f; border-radius: 8px; box-shadow: 0 0 10px #000; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
 
-    .container {
-      position: relative;
-      width: 700px;
-      height: 700px;
-      margin: auto;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.5);
-      border: 2px solid #a58b5f;
-    }
+.icon:hover { transform: scale(1.1); box-shadow: 0 0 15px #f2e9d0; }
 
-    .icon {
-      width: 64px;
-      height: 64px;
-      position: absolute;
-      background-size: cover;
-      border-radius: 8px;
-      border: 2px solid #a58b5f;
-      box-shadow: 0 0 10px #000;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+.container { background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 20px; border: 2px solid #a58b5f; max-width: 900px; margin: auto; }
 
-    .icon:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #f2e9d0;
-    }
-
-    .suprema {
-      width: 96px;
-      height: 96px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      border: 3px solid gold;
-    }
-
-    h1 {
-      text-align: center;
-      color: #e0d6b6;
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-  </style>
-</head>
-<body>
+  </style>  
+</head>  
+<body><div class="container">  
   <h1>Árvore de Habilidades</h1>
-  <div class="container" id="skillTree"></div>
-
-  <script>
-    const descricoes = [
-      "Disparo de energia arcana que perfura defesas mágicas.",
-      "Explosão infernal com dano em área crescente.",
-      "Lâmina espectral que persegue o inimigo.",
-      "Barreira espiritual que bloqueia magias por 2 turnos.",
-      "Chamas sagradas que purificam aliados e queimam inimigos.",
-      "Lâmina flamejante de execução, ignora defesa.",
-      "Estaca de cristal que surge do chão.",
-      "Tempestade negra que drena a vitalidade inimiga.",
-      "Rajada de vento cortante que afasta inimigos.",
-      "Espada divina invocada por um breve instante.",
-      "Aura gélida que reduz a velocidade dos inimigos.",
-      "Golpe sombrio que absorve parte do dano causado.",
-      "Luz purificadora que dissipa efeitos negativos.",
-      "Lanças espirituais lançadas em sequência.",
-      "Marca maldita que aumenta o dano sofrido pelo inimigo.",
-      "Disparo explosivo de luz ancestral.",
-      "Grito de guerra que aumenta o ataque por 3 turnos.",
-      "Raio concentrado que salta entre inimigos.",
-      "Sombra ilusória que desvia o próximo golpe.",
-      "Esfera arcana que explode após 2 segundos.",
-      "Chuva de flechas mágicas.",
-      "Gosma corrosiva que reduz defesa física.",
-      "Lâmina de trovão que paralisa temporariamente.",
-      "Barreira prismática que reflete ataques mágicos.",
-      "Punho flamejante que causa dano crítico.",
-      "Névoa venenosa que afeta área ampla.",
-      "Corrente etérea que prende inimigos.",
-      "Luz purificadora que revive um aliado com 30% de vida.",
-      "Meteoro etéreo com dano massivo.",
-      "Chamado da floresta que cura lentamente aliados.",
-      "Toque espectral que causa medo.",
-      "Rugido flamejante em cone frontal.",
-      "Aura da morte que enfraquece inimigos próximos.",
-      "Lança gélida com chance de congelar.",
-      "Explosão solar com grande alcance.",
-      "Golpe sombrio que ignora armadura.",
-      "Grito inspirador que fortalece aliados.",
-      "Lâmina de cristal com chance de crítico.",
-      "Esfera de trevas que silencia inimigos.",
-      "Chicote de fogo com alcance médio.",
-      "Proteção arcana que reduz dano por 3 turnos.",
-      "Espada de luz que cura ao atacar.",
-      "Luz divina que remove efeitos negativos em área.",
-      "Disparo gélido que desacelera.",
-      "Espinhos sombrios que ferem ao se mover.",
-      "Aura protetora que reduz todo dano recebido.",
-      "Golpe de trovão com área circular.",
-      "Invocação de espectro aliado.",
-      "Bênção suprema que restaura vida completamente."
-    ];
-
-    const container = document.getElementById('skillTree');
-
-    for (let i = 1; i <= 49; i++) {
-      const icon = document.createElement("div");
-      icon.className = "icon";
-      const angle = (2 * Math.PI * i) / 49;
-      const radius = 280;
-      const centerX = 350;
-      const centerY = 350;
-      icon.style.left = `${centerX + radius * Math.cos(angle) - 32}px`;
-      icon.style.top = `${centerY + radius * Math.sin(angle) - 32}px`;
-      icon.style.backgroundImage = `url('PNG/${i}.png')`;
-
-      icon.onclick = () => {
-        alert(`Nível necessário: ${i}\nDescrição: ${descricoes[i - 1] || 'Habilidade desconhecida.'}`);
-      };
-
-      container.appendChild(icon);
-    }
-
-    // Habilidade Suprema no centro
-    const suprema = document.createElement("div");
-    suprema.className = "icon suprema";
-    suprema.style.backgroundImage = "url('PNG/50.png')";
-    suprema.onclick = () => {
-      alert("Nível necessário: 99\nDescrição: Bênção suprema que restaura vida completamente.");
-    };
-    container.appendChild(suprema);
-  </script>
-</body>
-</html>
+  <div class="row" id="row1">
+    <div class="icon" style="background-image: url(PNG/1.png);"></div>
+    <div class="icon" style="background-image: url(PNG/2.png);"></div>
+    <div class="icon" style="background-image: url(PNG/3.png);"></div>
+    <div class="icon" style="background-image: url(PNG/4.png);"></div>
+    <div class="icon" style="background-image: url(PNG/5.png);"></div>
+    <div class="icon" style="background-image: url(PNG/6.png);"></div>
+    <div class="icon" style="background-image: url(PNG/7.png);"></div>
+  </div>  
+  <div class="row" id="row2">
+    <div class="icon" style="background-image: url(PNG/8.png);"></div>
+    <div class="icon" style="background-image: url(PNG/9.png);"></div>
+    <div class="icon" style="background-image: url(PNG/10.png);"></div>
+    <div class="icon" style="background-image: url(PNG/11.png);"></div>
+    <div class="icon" style="background-image: url(PNG/12.png);"></div>
+    <div class="icon" style="background-image: url(PNG/13.png);"></div>
+    <div class="icon" style="background-image: url(PNG/14.png);"></div>
+  </div>  
+  <div class="row" id="row3">
+    <div class="icon" style="background-image: url(PNG/15.png);"></div>
+    <div class="icon" style="background-image: url(PNG/16.png);"></div>
+    <div class="icon" style="background-image: url(PNG/17.png);"></div>
+    <div class="icon" style="background-image: url(PNG/18.png);"></div>
+    <div class="icon" style="background-image: url(PNG/19.png);"></div>
+    <div class="icon" style="background-image: url(PNG/20.png);"></div>
+    <div class="icon" style="background-image: url(PNG/21.png);"></div>
+  </div>  
+  <div class="row" id="row4">
+    <div class="icon" style="background-image: url(PNG/22.png);"></div>
+    <div class="icon" style="background-image: url(PNG/23.png);"></div>
+    <div class="icon" style="background-image: url(PNG/24.png);"></div>
+    <div class="icon" style="background-image: url(PNG/25.png);"></div>
+    <div class="icon" style="background-image: url(PNG/26.png);"></div>
+    <div class="icon" style="background-image: url(PNG/27.png);"></div>
+    <div class="icon" style="background-image: url(PNG/28.png);"></div>
+  </div>  
+  <div class="row" id="row5">
+    <div class="icon" style="background-image: url(PNG/29.png);"></div>
+    <div class="icon" style="background-image: url(PNG/30.png);"></div>
+    <div class="icon" style="background-image: url(PNG/31.png);"></div>
+    <div class="icon" style="background-image: url(PNG/32.png);"></div>
+    <div class="icon" style="background-image: url(PNG/33.png);"></div>
+    <div class="icon" style="background-image: url(PNG/34.png);"></div>
+    <div class="icon" style="background-image: url(PNG/35.png);"></div>
+  </div>  
+  <div class="row" id="row6">
+    <div class="icon" style="background-image: url(PNG/36.png);"></div>
+    <div class="icon" style="background-image: url(PNG/37.png);"></div>
+    <div class="icon" style="background-image: url(PNG/38.png);"></div>
+    <div class="icon" style="background-image: url(PNG/39.png);"></div>
+    <div class="icon" style="background-image: url(PNG/40.png);"></div>
+    <div class="icon" style="background-image: url(PNG/41.png);"></div>
+    <div class="icon" style="background-image: url(PNG/42.png);"></div>
+  </div>  
+  <div class="row" id="row7">
+    <div class="icon" style="background-image: url(PNG/43.png);"></div>
+    <div class="icon" style="background-image: url(PNG/44.png);"></div>
+    <div class="icon" style="background-image: url(PNG/45.png);"></div>
+    <div class="icon" style="background-image: url(PNG/46.png);"></div>
+    <div class="icon" style="background-image: url(PNG/47.png);"></div>
+    <div class="icon" style="background-image: url(PNG/48.png);"></div>
+    <div class="icon" style="background-image: url(PNG/49.png);"></div>
+  </div>  
+  <div class="row" id="row8">
+    <div class="icon" style="background-image: url(PNG/50.png);"></div>
+  </div>  
+</div></body></html>
