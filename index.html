@@ -1,116 +1,144 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Árvore de Habilidades</title>
+  <meta charset="UTF-8" />
+  <title>Árvore de Habilidades Estilo Poemate</title>
   <style>
     body {
-      margin: 0;
-      padding: 20px;
+      background: #1e1e1e;
+      color: #fff;
       font-family: 'Garamond', serif;
-      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWkbAM130_7CvsqZdfB8h7bsP89mtkCweHAW7q4MlQoM8BEUlp6J0jjCs&s=10');
-      background-size: cover;
-      background-attachment: fixed;
-      color: #f8f8f2;
-      text-shadow: 1px 1px 2px #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 36px;
-      color: #e0d6b6;
+    .tree {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
     .row {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin: 20px 0;
+      position: relative;
     }
-
-    .icon {
+    .skill {
       width: 64px;
       height: 64px;
+      margin: 0 15px;
+      background-color: #333;
+      border: 2px solid #888;
+      border-radius: 10px;
       background-size: cover;
-      margin: 8px;
-      border: 2px solid #a58b5f;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #000;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      transition: transform 0.2s, border-color 0.3s;
     }
-
-    .icon:hover {
+    .skill.locked {
+      filter: grayscale(1) brightness(0.5);
+      cursor: not-allowed;
+    }
+    .skill:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 15px #f2e9d0;
     }
-
-    .container {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 20px;
-      border: 2px solid #a58b5f;
-      max-width: 1000px;
-      margin: auto;
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Árvore de Habilidades</h1>
-    <div class="row" id="skillsRow">
-      <div class="icon" style="background-image: url('PNG/1.png');"></div>
-      <div class="icon" style="background-image: url('PNG/2.png');"></div>
-      <div class="icon" style="background-image: url('PNG/3.png');"></div>
-      <div class="icon" style="background-image: url('PNG/4.png');"></div>
-      <div class="icon" style="background-image: url('PNG/5.png');"></div>
-      <div class="icon" style="background-image: url('PNG/6.png');"></div>
-      <div class="icon" style="background-image: url('PNG/7.png');"></div>
-      <div class="icon" style="background-image: url('PNG/8.png');"></div>
-      <div class="icon" style="background-image: url('PNG/9.png');"></div>
-      <div class="icon" style="background-image: url('PNG/10.png');"></div>
-      <div class="icon" style="background-image: url('PNG/11.png');"></div>
-      <div class="icon" style="background-image: url('PNG/12.png');"></div>
-      <div class="icon" style="background-image: url('PNG/13.png');"></div>
-      <div class="icon" style="background-image: url('PNG/14.png');"></div>
-      <div class="icon" style="background-image: url('PNG/15.png');"></div>
-      <div class="icon" style="background-image: url('PNG/16.png');"></div>
-      <div class="icon" style="background-image: url('PNG/17.png');"></div>
-      <div class="icon" style="background-image: url('PNG/18.png');"></div>
-      <div class="icon" style="background-image: url('PNG/19.png');"></div>
-      <div class="icon" style="background-image: url('PNG/20.png');"></div>
-      <div class="icon" style="background-image: url('PNG/21.png');"></div>
-      <div class="icon" style="background-image: url('PNG/22.png');"></div>
-      <div class="icon" style="background-image: url('PNG/23.png');"></div>
-      <div class="icon" style="background-image: url('PNG/24.png');"></div>
-      <div class="icon" style="background-image: url('PNG/25.png');"></div>
-      <div class="icon" style="background-image: url('PNG/26.png');"></div>
-      <div class="icon" style="background-image: url('PNG/27.png');"></div>
-      <div class="icon" style="background-image: url('PNG/28.png');"></div>
-      <div class="icon" style="background-image: url('PNG/29.png');"></div>
-      <div class="icon" style="background-image: url('PNG/30.png');"></div>
-      <div class="icon" style="background-image: url('PNG/31.png');"></div>
-      <div class="icon" style="background-image: url('PNG/32.png');"></div>
-      <div class="icon" style="background-image: url('PNG/33.png');"></div>
-      <div class="icon" style="background-image: url('PNG/34.png');"></div>
-      <div class="icon" style="background-image: url('PNG/35.png');"></div>
-      <div class="icon" style="background-image: url('PNG/36.png');"></div>
-      <div class="icon" style="background-image: url('PNG/37.png');"></div>
-      <div class="icon" style="background-image: url('PNG/38.png');"></div>
-      <div class="icon" style="background-image: url('PNG/39.png');"></div>
-      <div class="icon" style="background-image: url('PNG/40.png');"></div>
-      <div class="icon" style="background-image: url('PNG/41.png');"></div>
-      <div class="icon" style="background-image: url('PNG/42.png');"></div>
-      <div class="icon" style="background-image: url('PNG/43.png');"></div>
-      <div class="icon" style="background-image: url('PNG/44.png');"></div>
-      <div class="icon" style="background-image: url('PNG/45.png');"></div>
-      <div class="icon" style="background-image: url('PNG/46.png');"></div>
-      <div class="icon" style="background-image: url('PNG/47.png');"></div>
-      <div class="icon" style="background-image: url('PNG/48.png');"></div>
-      <div class="icon" style="background-image: url('PNG/49.png');"></div>
-      <div class="icon" style="background-image: url('PNG/50.png');"></div>
+  <div class="tree">
+    <canvas id="lines" width="800" height="600"></canvas>
+
+    <div class="row" id="row1">
+      <div class="skill" id="s1" style="background-image: url('PNG/1.png')"></div>
+    </div>
+    <div class="row" id="row2">
+      <div class="skill locked" id="s2" style="background-image: url('PNG/2.png')"></div>
+      <div class="skill locked" id="s3" style="background-image: url('PNG/3.png')"></div>
+    </div>
+    <div class="row" id="row3">
+      <div class="skill locked" id="s4" style="background-image: url('PNG/4.png')"></div>
     </div>
   </div>
+
+  <script>
+    const skills = {
+      s1: { unlocked: true, unlocks: ['s2', 's3'] },
+      s2: { unlocked: false, unlocks: ['s4'] },
+      s3: { unlocked: false, unlocks: ['s4'] },
+      s4: { unlocked: false, unlocks: [] }
+    };
+
+    const updateSkillStyles = () => {
+      for (const id in skills) {
+        const el = document.getElementById(id);
+        if (skills[id].unlocked) {
+          el.classList.remove("locked");
+        } else {
+          el.classList.add("locked");
+        }
+      }
+    };
+
+    document.querySelectorAll('.skill').forEach(skill => {
+      skill.addEventListener('click', () => {
+        const id = skill.id;
+        if (!skills[id].unlocked) return;
+
+        skills[id].unlocks.forEach(unlockId => {
+          skills[unlockId].unlocked = true;
+        });
+
+        updateSkillStyles();
+      });
+    });
+
+    updateSkillStyles();
+
+    // Draw connecting lines
+    const drawLines = () => {
+      const canvas = document.getElementById('lines');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = '#aaa';
+      ctx.lineWidth = 2;
+
+      for (const id in skills) {
+        const skill = document.getElementById(id);
+        const rect1 = skill.getBoundingClientRect();
+        const x1 = rect1.left + rect1.width / 2 - canvas.offsetLeft;
+        const y1 = rect1.top + rect1.height / 2 - canvas.offsetTop;
+
+        skills[id].unlocks.forEach(targetId => {
+          const target = document.getElementById(targetId);
+          const rect2 = target.getBoundingClientRect();
+          const x2 = rect2.left + rect2.width / 2 - canvas.offsetLeft;
+          const y2 = rect2.top + rect2.height / 2 - canvas.offsetTop;
+
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        });
+      }
+    };
+
+    window.addEventListener('load', () => {
+      drawLines();
+    });
+
+    window.addEventListener('resize', () => {
+      drawLines();
+    });
+  </script>
 </body>
 </html>
