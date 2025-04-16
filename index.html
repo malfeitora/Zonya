@@ -9,26 +9,35 @@
       background: #0f0f0f;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #fff;
-      overflow: hidden;
+      overflow: auto;
     }.circle-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 100px 50px;
+}
+
+.tree {
+  position: relative;
+  width: 400px;
+  height: 400px;
 }
 
 .center-label {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: conic-gradient(#3b82f6 0% 25%, #06b6d4 25% 50%, #fde047 50% 75%, #ef4444 75% 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 18px;
   font-weight: bold;
   text-shadow: 1px 1px 2px #000;
   color: #fff;
@@ -65,19 +74,9 @@
   </style>
 </head>
 <body>
-  <div class="circle-container" id="circleContainer">
-    <div class="center-label" id="center">Spells</div>
-  </div>  <script>
+  <div class="circle-container" id="circleContainer"></div>  <script>
     const container = document.getElementById("circleContainer");
-    const center = document.getElementById("center");
     const icons = Array.from({ length: 100 }, (_, i) => `https://via.placeholder.com/48x48?text=${i + 1}`);
-
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const radius = 350;
-    const branchLength = 5;
-    const trees = Math.ceil(icons.length / 20);
-    const angleStep = (2 * Math.PI) / trees;
 
     const createLine = (x1, y1, x2, y2) => {
       const dx = x2 - x1;
@@ -93,34 +92,38 @@
       return line;
     };
 
-    const createBranch = (x, y, depth, angle, iconIndex, iconsPerTree) => {
+    const createBranch = (tree, x, y, depth, angle, iconIndex, iconsPerTree) => {
       if (depth === 0 || iconIndex >= icons.length || iconIndex % iconsPerTree === 0 && iconIndex !== 0) return;
 
-      const nextX = x + Math.cos(angle) * 90;
-      const nextY = y + Math.sin(angle) * 90;
+      const nextX = x + Math.cos(angle) * 70;
+      const nextY = y + Math.sin(angle) * 70;
 
       const node = document.createElement("div");
       node.className = "node";
       node.style.left = `${nextX}px`;
       node.style.top = `${nextY}px`;
       node.style.backgroundImage = `url('${icons[iconIndex]}')`;
-      container.appendChild(node);
+      tree.appendChild(node);
 
       const line = createLine(x, y, nextX, nextY);
-      container.appendChild(line);
+      tree.appendChild(line);
 
-      createBranch(nextX, nextY, depth - 1, angle - 0.4, iconIndex + 1, iconsPerTree);
-      createBranch(nextX, nextY, depth - 1, angle + 0.4, iconIndex + 2, iconsPerTree);
+      createBranch(tree, nextX, nextY, depth - 1, angle - 0.5, iconIndex + 1, iconsPerTree);
+      createBranch(tree, nextX, nextY, depth - 1, angle + 0.5, iconIndex + 2, iconsPerTree);
     };
 
+    const trees = Math.ceil(icons.length / 20);
     for (let t = 0; t < trees; t++) {
-      const angle = t * angleStep;
-      const baseX = centerX + Math.cos(angle) * radius;
-      const baseY = centerY + Math.sin(angle) * radius;
-      const line = createLine(centerX, centerY, baseX, baseY);
-      container.appendChild(line);
+      const tree = document.createElement("div");
+      tree.className = "tree";
 
-      createBranch(baseX, baseY, branchLength, angle, t * 20, 20);
+      const center = document.createElement("div");
+      center.className = "center-label";
+      center.textContent = "Spells";
+      tree.appendChild(center);
+
+      createBranch(tree, 200, 200, 4, -Math.PI / 2, t * 20, 20);
+      container.appendChild(tree);
     }
   </script></body>
 </html>
